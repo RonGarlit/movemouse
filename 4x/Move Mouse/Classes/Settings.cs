@@ -48,11 +48,11 @@ namespace ellabi.Classes
         private bool? _disableButtonAnimation;
         //private bool? _hookKeyEnabled;
         //private Key _hookKey;
-        private bool? _standWithUkraine;
         private bool? _pauseOnBattery;
         private LogEventLevel? _logLevel;
         private bool? _showSystemTrayNotifications;
         //private bool? _reactivatePreviousWindow;
+        private bool? _showTaskbarStatus;
 
         public int LowerInterval
         {
@@ -480,20 +480,6 @@ namespace ellabi.Classes
             }
         }
 
-        public bool StandWithUkraine
-        {
-            get
-            {
-                if (_standWithUkraine == null) _standWithUkraine = false;
-                return _standWithUkraine.Value;
-            }
-            set
-            {
-                _standWithUkraine = value;
-                OnPropertyChanged();
-            }
-        }
-
         public bool PauseOnBattery
         {
             get
@@ -549,6 +535,20 @@ namespace ellabi.Classes
         //        OnPropertyChanged();
         //    }
         //}
+
+        public bool ShowTaskbarStatus
+        {
+            get
+            {
+                if (_showTaskbarStatus == null) _showTaskbarStatus = true;
+                return _showTaskbarStatus.Value;
+            }
+            set
+            {
+                _showTaskbarStatus = value;
+                OnPropertyChanged();
+            }
+        }
 
         [XmlArrayItem(Type = typeof(ActionBase)),
          XmlArrayItem(Type = typeof(MoveMouseCursorAction)),

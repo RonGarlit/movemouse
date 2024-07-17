@@ -167,19 +167,22 @@ namespace ellabi.Views
             {
                 try
                 {
-                    Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(delegate
+                    if (_vm.SettingsVm.Settings.ShowTaskbarStatus)
                     {
-                        if (TaskbarItemInfo != null)
+                        Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(delegate
                         {
-                            TaskbarItemInfo.ProgressState =
-                                state.Equals(MouseWindowViewModel.MouseState.Running) ? TaskbarItemProgressState.Normal :
-                                state.Equals(MouseWindowViewModel.MouseState.Executing) ? TaskbarItemProgressState.Error :
-                                state.Equals(MouseWindowViewModel.MouseState.Paused) ? TaskbarItemProgressState.Paused :
-                                state.Equals(MouseWindowViewModel.MouseState.Sleeping) ? TaskbarItemProgressState.Paused :
-                                state.Equals(MouseWindowViewModel.MouseState.OnBattery) ? TaskbarItemProgressState.Paused :
-                                TaskbarItemProgressState.None;
-                        }
-                    }));
+                            if (TaskbarItemInfo != null)
+                            {
+                                TaskbarItemInfo.ProgressState =
+                                    state.Equals(MouseWindowViewModel.MouseState.Running) ? TaskbarItemProgressState.Normal :
+                                    state.Equals(MouseWindowViewModel.MouseState.Executing) ? TaskbarItemProgressState.Error :
+                                    state.Equals(MouseWindowViewModel.MouseState.Paused) ? TaskbarItemProgressState.Paused :
+                                    state.Equals(MouseWindowViewModel.MouseState.Sleeping) ? TaskbarItemProgressState.Paused :
+                                    state.Equals(MouseWindowViewModel.MouseState.OnBattery) ? TaskbarItemProgressState.Paused :
+                                    TaskbarItemProgressState.None;
+                            }
+                        }));
+                    }
                 }
                 catch (Exception ex)
                 {
